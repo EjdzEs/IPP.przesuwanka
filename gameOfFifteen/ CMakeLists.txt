@@ -1,0 +1,40 @@
+cmake_minimum_required (VERSION 2.8)
+
+project (gameOfFifteen)
+
+set (EXECUTABLE_OUTPUT_PATH "${Pietnastak_BINARY_DIR}/bin")
+file(MAKE_DIRECTORY "${Pietnastak_BINARY_DIR}/build")
+set (CMAKE_FILES_DIRECTORY "/build")
+find_package (Qt4 REQUIRED)
+include (${QT_USE_FILE})
+add_definitions (${QT_DEFINITIONS})
+
+
+set (SOURCES
+    aboutbox.cpp
+    main.cpp
+    mainwindow.cpp
+    mytile.cpp
+    puzzlemanager.cpp
+    tinyintarray.cpp
+)
+
+set (HEADERS
+    aboutbox.h
+    mainwindow.h
+)
+
+set (UI
+    aboutbox.ui
+    mainwindow.ui
+)
+
+SET (RESOURCES
+    gameimages.qrc
+)
+
+qt4_wrap_cpp (SOURCES ${HEADERS})
+qt4_wrap_ui (SOURCES ${UI})
+qt4_add_resources (RESOURCES_RCC ${RESOURCES})
+add_executable (Pietnastak ${SOURCES} ${RESOURCES_RCC})
+target_link_libraries (Pietnastak ${QT_LIBRARIES})
